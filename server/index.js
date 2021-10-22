@@ -1,7 +1,10 @@
 const WebSocket = require("ws");
 const { prochainPassage } = require("./prochainPassage");
 
-const server = new WebSocket.Server({ port: 33290 });
+const PORT = process.env.PORT || 33290;
+const server = new WebSocket.Server({ port: PORT });
+
+console.log(`PORT is ${PORT}`);
 
 let sockets = [];
 
