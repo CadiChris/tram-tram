@@ -4,13 +4,12 @@
 
 https://opendata.bordeaux-metropole.fr/explore/
 
-#### Services
+#### Arrêt Gare de Blanquefort
 
 - Arrêt physique sur le réseau SAEIV
     - https://opendata.bordeaux-metropole.fr/explore/dataset/sv_arret_p/webservices/
     - `GET https://data.bordeaux-metropole.fr/wfs?key=258BILMNYZ&REQUEST=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=bm:SV_ARRET_P`
 
-**Arrêt Gare de Blanquefort**
 
 ```xml
 
@@ -76,3 +75,10 @@ https://opendata.bordeaux-metropole.fr/explore/
 </bm:SV_ARRET_P>
 
 ``` 
+
+#### Prochains passages à Gare de Blanquefort
+
+```
+GET https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_A
+GET https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_R
+```
