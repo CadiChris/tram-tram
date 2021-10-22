@@ -25,13 +25,13 @@ function log(clientEvent) {
 }
 
 const prochainPassageNow = {
-  getProchainPassage: async () => {
+  getProchainPassage: () => {
     return "passage dans " + new Date();
   },
 };
 
-setInterval(async () => {
-  await prochainPassage(sockets, prochainPassageNow);
+setInterval(() => {
+  prochainPassage(sockets, prochainPassageNow);
 }, secondes(1));
 
 function secondes(combien) {

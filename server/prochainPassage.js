@@ -1,5 +1,5 @@
 async function prochainPassage(sockets, prochainPassageAdapter) {
-  const prochain = await prochainPassageAdapter.getProchainPassage();
+  const prochain = prochainPassageAdapter.getProchainPassage();
   sockets.forEach((s) => s.send(prochain));
 }
 
