@@ -1,21 +1,28 @@
+const express = require("express");
 const WebSocket = require("ws");
 const { prochainPassage } = require("./prochainPassage");
 
 const PORT = process.env.PORT || 33290;
-const server = new WebSocket.Server({ port: PORT });
-
-console.log(`PORT is ${PORT}`);
+const server = express().listen(PORT, () =>
+  console.log(`Listening on ${PORT}`)
+);
+const wss = new WebSocket.Server({ server });
 
 let sockets = [];
-
-server.on("connection", (socket) => {
+wss.on("connection", (socket) => {
   sockets.push(socket);
+  log("connected");
 
   // When a socket closes, or disconnects, remove it from the array.
   socket.on("close", () => {
     sockets = sockets.filter((s) => s !== socket);
+    log("disconnected");
   });
 });
+
+function log(clientEvent) {
+  console.log(`Client ${clientEvent}. Total clients: ${sockets.length}`);
+}
 
 const prochainPassageNow = {
   getProchainPassage: async () => {
