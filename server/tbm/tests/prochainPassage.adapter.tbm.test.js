@@ -33,7 +33,7 @@ describe("Adapter du prochain passage sur TBM", () => {
 async function xmlDuProchainPassage() {
   const fichier = path.join(
     __dirname,
-    "./data/tbm/prochain_passages_gare_de_blanquefort.xml"
+    "./data/prochain_passages_gare_de_blanquefort.xml"
   );
   return await fs.readFile(fichier);
 }

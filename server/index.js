@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { prochainPassage } = require("./prochainPassage");
-const { prochainPassageAdapterTbm } = require("./prochainPassage.adapter.tbm");
+const { prochainPassageAdapterTbm } = require("./tbm/prochainPassage.adapter.tbm");
 
 const PORT = 33290;
 const app = express();

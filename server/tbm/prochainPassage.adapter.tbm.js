@@ -1,5 +1,5 @@
 const xml2js = require("xml2js");
-const { httpClient } = require("./http/httpClient");
+const { httpClient } = require("../http/httpClient");
 
 const prochainPassageAdapterTbm = {
   async getProchainPassage({ http  } = { http: httpClient}) {
