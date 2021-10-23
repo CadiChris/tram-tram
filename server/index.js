@@ -1,39 +1,32 @@
 const express = require("express");
-const WebSocket = require("ws");
+const path = require("path");
 const { prochainPassage } = require("./prochainPassage");
 
 const PORT = process.env.PORT || 33290;
-const server = express()
-  .use((req, res) => res.sendFile("index.html", { root: __dirname }))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
-const wss = new WebSocket.Server({ server });
+const app = express();
+const expressWs = require("express-ws")(app);
 
-let sockets = [];
-wss.on("connection", (socket) => {
-  sockets.push(socket);
-  log("connected");
+app
+  .get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "/index.html"));
+  })
+  .ws("/", () => log("Client connected"))
+  .ws("/web-socket", () => log("Client connected"))
+  .listen(PORT, () => log(`Listening on ${PORT}`));
 
-  // When a socket closes, or disconnects, remove it from the array.
-  socket.on("close", () => {
-    sockets = sockets.filter((s) => s !== socket);
-    log("disconnected");
-  });
-});
-
-function log(clientEvent) {
-  console.log(`Client ${clientEvent}. Total clients: ${sockets.length}`);
-}
+//------------------------------------
 
 const prochainPassageNow = {
-  getProchainPassage: () => {
-    return "passage dans " + new Date();
-  },
+  getProchainPassage: () => `Prochain pasasge : ${new Date()}`,
 };
-
 setInterval(() => {
-  prochainPassage(sockets, prochainPassageNow);
+  prochainPassage(expressWs.getWss().clients, prochainPassageNow);
 }, secondes(1));
 
 function secondes(combien) {
   return combien * 1000;
+}
+
+function log(msg) {
+  console.log(`[TRAM-TRAM] ${msg}`);
 }
