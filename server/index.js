@@ -3,9 +3,9 @@ const WebSocket = require("ws");
 const { prochainPassage } = require("./prochainPassage");
 
 const PORT = process.env.PORT || 33290;
-const server = express().listen(PORT, () =>
-  console.log(`Listening on ${PORT}`)
-);
+const server = express()
+  .use((req, res) => res.sendFile("index.html", { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 const wss = new WebSocket.Server({ server });
 
 let sockets = [];
