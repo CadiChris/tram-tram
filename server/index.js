@@ -7,7 +7,7 @@ const {
 const { log } = require("./utils/log");
 const { secondes } = require("./utils/temps");
 
-const PORT = 33290;
+const PORT = process.env.PORT || 33290;
 const app = express();
 const expressWs = require("express-ws")(app);
 
