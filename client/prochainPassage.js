@@ -5,7 +5,7 @@ export function afficherProchainPassage({ prochain, reference }, updateUi) {
   const diffSecondes = getDiffSecondes(reference, horaire_theorique);
 
   const html = `
-⏲ (${diffMinutes} minutes) (${diffSecondes} secondes) <br/>
+⏳ (${diffMinutes} minutes) (${diffSecondes} secondes) <br/>
 ⌚️ ${horaire_theorique.toLocaleTimeString("fr")}`;
 
   updateUi(html);
