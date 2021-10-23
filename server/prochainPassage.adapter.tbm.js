@@ -1,6 +1,8 @@
 const xml2js = require("xml2js");
+const { httpClient } = require("./http/httpClient");
+
 const prochainPassageAdapterTbm = {
-  async getProchainPassage({ http }) {
+  async getProchainPassage({ http  } = { http: httpClient}) {
     const xml = await http.get(
       "https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_A"
     );

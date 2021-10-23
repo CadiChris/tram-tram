@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { prochainPassage } = require("./prochainPassage");
+const { prochainPassageAdapterTbm } = require("./prochainPassage.adapter.tbm");
 
 const PORT = 33290;
 const app = express();
@@ -15,12 +16,9 @@ app
 
 //------------------------------------
 
-const prochainPassageNow = {
-  getProchainPassage: () => `Prochain pasasge : ${new Date()}`,
-};
-setInterval(() => {
-  prochainPassage(expressWs.getWss().clients, prochainPassageNow);
-}, secondes(1));
+setInterval(async () => {
+  await prochainPassage(expressWs.getWss().clients, prochainPassageAdapterTbm);
+}, secondes(5));
 
 function secondes(combien) {
   return combien * 1000;
