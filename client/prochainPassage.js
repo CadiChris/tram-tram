@@ -5,14 +5,14 @@ export function afficherProchainPassage({ prochain, reference }, updateUi) {
   const diffSecondes = getDiffSecondes(reference, horaire_theorique);
 
   const html = `
-⏳ (${diffMinutes} minutes) (${diffSecondes} secondes) <br/>
+⏳ ${diffMinutes} minutes (${diffSecondes} secondes) <br/>
 ⌚️ ${horaire_theorique.toLocaleTimeString("fr")}`;
 
   updateUi(html);
 }
 
 function getDiffMinutes(reference, horaire_theorique) {
-  return Math.round(Math.abs(reference - horaire_theorique) / 1000 / 60)
+  return Math.floor(Math.abs(reference - horaire_theorique) / 1000 / 60)
     .toString()
     .padStart(2, "0");
 }
