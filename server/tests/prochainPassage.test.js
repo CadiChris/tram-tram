@@ -17,5 +17,11 @@ describe("Prochain passage", () => {
     );
   });
 
-  it.todo("ne fait rien si la liste des sockets est vide", () => {});
+  it("ne fait rien si la liste des sockets est vide", async () => {
+    const prochainPassageInMemory = { getProchainPassage: jest.fn() };
+
+    await prochainPassage(new Set(), prochainPassageInMemory);
+
+    expect(prochainPassageInMemory.getProchainPassage).not.toHaveBeenCalled();
+  });
 });
