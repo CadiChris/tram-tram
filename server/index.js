@@ -12,8 +12,9 @@ const app = express();
 const expressWs = require("express-ws")(app);
 
 app
+  .use(express.static(path.join(__dirname, "../client")))
   .get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "/index.html"));
+    res.sendFile(path.join(__dirname, "../client/index.html"));
   })
   .ws("/web-socket", () => log("Client connected"))
   .listen(PORT, () => log(`Listening on ${PORT}`));
