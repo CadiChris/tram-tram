@@ -1,44 +1,29 @@
 const { afficherProchainPassage } = require("../prochainPassage");
 
 describe("Affichage du prochain passage", () => {
+  const arret_de_test = {
+    prochains: [
+      { horaire_theorique: "2021-10-23T15:02:31", terminus: "Gare De Begles" },
+      { horaire_theorique: "2021-10-23T15:06:00", terminus: "Porte De B." },
+    ],
+    reference: new Date("2021-10-23T15:00:00"),
+  };
+
   it("affiche l'heure du prochain passage", () => {
     const updateUi = jest.fn();
 
-    afficherProchainPassage(
-      {
-        prochains: [
-          {
-            horaire_theorique: "2021-10-23T23:49:03",
-            terminus: "Gare De Begles",
-          },
-          {
-            horaire_theorique: "2021-10-23T23:55:30",
-            terminus: "Porte de Bourgogne",
-          },
-        ],
-      },
-      updateUi
-    );
+    afficherProchainPassage(arret_de_test, updateUi);
 
-    assertAffichage("23:49:03", updateUi);
+    assertAffichage("15:02:31", updateUi);
     assertAffichage("Gare De Begles", updateUi);
-    assertAffichage("23:55:30", updateUi);
-    assertAffichage("Porte de Bourgogne", updateUi);
+    assertAffichage("15:06:00", updateUi);
+    assertAffichage("Porte De B.", updateUi);
   });
 
   it("affiche dans combien de temps est le départ", () => {
     const updateUi = jest.fn();
 
-    afficherProchainPassage(
-      {
-        prochains: [
-          { horaire_theorique: "2021-10-23T15:02:31" },
-          { horaire_theorique: "2021-10-23T15:06:00" },
-        ],
-        reference: new Date("2021-10-23T15:00:00"),
-      },
-      updateUi
-    );
+    afficherProchainPassage(arret_de_test, updateUi);
 
     assertAffichage("02 minutes (151 secondes)", updateUi);
     assertAffichage("06 minutes (360 secondes)", updateUi);
