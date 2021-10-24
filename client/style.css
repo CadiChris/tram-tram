@@ -1,12 +1,21 @@
-h1 {
-    font-family: "Bebas Neue", sans-serif;
-    text-align: center;
+html {
+  font-size: 20px;
 }
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+}
+
 div {
-    font-family: Cabin, serif;
+  font-family: Cabin, serif;
 }
 
 .un-depart {
-    margin: .6rem 0 .5rem .2rem;
-    border-left: 4px solid deeppink;
+  margin: 0.6rem 0 0.5rem 0.2rem;
+  border-left: 4px solid deeppink;
+}
+
+.terminus {
+  font-size: 0.75rem;
 }

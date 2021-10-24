@@ -29,9 +29,12 @@ describe("Adapter du prochain passage sur TBM", () => {
     );
 
     expect(prochain).toEqual([
-      { horaire_theorique: "2021-10-23T21:05:25" },
-      { horaire_theorique: "2021-10-23T21:11:43" },
-      { horaire_theorique: "2021-10-23T21:24:28" },
+      { horaire_theorique: "2021-10-23T21:05:25", terminus: "Gare De Begles" },
+      {
+        horaire_theorique: "2021-10-23T21:11:43",
+        terminus: "Porte De Bourgogne",
+      },
+      { horaire_theorique: "2021-10-23T21:24:28", terminus: "Gare De Begles" },
     ]);
   });
 });

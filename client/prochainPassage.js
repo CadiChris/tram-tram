@@ -1,21 +1,20 @@
 export function afficherProchainPassage({ prochains, reference }, updateUi) {
-  const html = prochains
-    .map((p) => htmlPourUnHoraire(p.horaire_theorique, reference))
-    .join(" ");
+  const html = prochains.map((p) => htmlPourUnHoraire(p, reference)).join(" ");
 
   updateUi(html);
 }
 
-function htmlPourUnHoraire(unHoraire, reference) {
-  const horaire_theorique = new Date(unHoraire);
+function htmlPourUnHoraire({ horaire_theorique, terminus }, reference) {
+  const quand = new Date(horaire_theorique);
 
-  const diffMinutes = getDiffMinutes(reference, horaire_theorique);
-  const diffSecondes = getDiffSecondes(reference, horaire_theorique);
+  const diffMinutes = getDiffMinutes(reference, quand);
+  const diffSecondes = getDiffSecondes(reference, quand);
 
   return `
 <div class="un-depart">
     ⏳ ${diffMinutes} minutes (${diffSecondes} secondes) <br/>
-    ⌚️ ${horaire_theorique.toLocaleTimeString("fr")}
+    ⌚️ ${quand.toLocaleTimeString("fr")}
+     <span class="terminus">${terminus}</span>
 </div>`;
 }
 
