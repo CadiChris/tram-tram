@@ -1,7 +1,7 @@
 import { afficherProchainPassage } from "./prochainPassage.js";
 
-const socket = new WebSocket("wss://tram-tram.herokuapp.com/web-socket");
-// const socket = new WebSocket("ws://localhost:33290/web-socket");
+const websocket_url = location.origin.replace(/^http/, 'ws');
+const socket = new WebSocket(`${websocket_url}/web-socket`);
 
 socket.onmessage = (event) => {
   console.log("%s", event.data);
