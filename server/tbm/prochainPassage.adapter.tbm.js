@@ -2,7 +2,7 @@ const xml2js = require("xml2js");
 const { httpClient } = require("../http/httpClient");
 
 const prochainPassageAdapterTbm = {
-  async getProchainPassage({ http  } = { http: httpClient}) {
+  async getProchainPassage({ http } = { http: httpClient }) {
     const xml = await http.get(
       "https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_A"
     );
@@ -14,7 +14,7 @@ const prochainPassageAdapterTbm = {
       ][0]["wps:ComplexData"][0]["gml:featureMember"][0]["bm:HORAIRE"][0][
         "bm:HOR_THEO"
       ][0];
-    return { horaire_theorique };
+    return [{ horaire_theorique }];
   },
 };
 

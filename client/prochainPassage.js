@@ -1,5 +1,5 @@
-export function afficherProchainPassage({ prochain, reference }, updateUi) {
-  const horaire_theorique = new Date(prochain.horaire_theorique);
+export function afficherProchainPassage({ prochains, reference }, updateUi) {
+  const horaire_theorique = new Date(prochains[0].horaire_theorique);
 
   const diffMinutes = getDiffMinutes(reference, horaire_theorique);
   const diffSecondes = getDiffSecondes(reference, horaire_theorique);

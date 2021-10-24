@@ -5,15 +5,15 @@ describe("Prochain passage", () => {
     const socket = { send: jest.fn() };
 
     const prochainPassageInMemory = {
-      getProchainPassage: async () => ({
-        horaire_theorique: "2021-10-23T20:57:19",
-      }),
+      getProchainPassage: async () => [
+        { horaire_theorique: "2021-10-23T20:57:19" },
+      ],
     };
 
-    await prochainPassage([socket], prochainPassageInMemory);
+    await prochainPassage(new Set([socket]), prochainPassageInMemory);
 
     expect(socket.send).toHaveBeenCalledWith(
-      '{"horaire_theorique":"2021-10-23T20:57:19"}'
+      "[{\"horaire_theorique\":\"2021-10-23T20:57:19\"}]"
     );
   });
 
