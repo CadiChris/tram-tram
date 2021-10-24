@@ -2,20 +2,25 @@ const xml2js = require("xml2js");
 const { httpClient } = require("../http/httpClient");
 
 const prochainPassageAdapterTbm = {
-  async getProchainPassage({ http } = { http: httpClient }) {
-    const xml = await http.get(
-      "https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_A"
-    );
+  async getProchainPassage(
+    { id_arret, terminus_exclus },
+    { http } = { http: httpClient }
+  ) {
+    const xml = await http.get(urlProchainPassagePour(id_arret));
 
     const xmlAsObject = await xml2js.parseStringPromise(xml);
     const entrees = get_wpsOutputs(xmlAsObject);
 
     return entrees
       .map((e) => get_bmHORAIRE(e))
-      .filter((h) => h["bm:TERMINUS"][0] !== "Gare De Blanquefort")
+      .filter((h) => !terminus_exclus.includes(h["bm:TERMINUS"][0]))
       .map((h) => ({ horaire_theorique: h["bm:HOR_THEO"][0] }));
   },
 };
+
+function urlProchainPassagePour(id_arret) {
+  return `https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=${id_arret}`;
+}
 
 function get_wpsOutputs(xmlAsObject) {
   return xmlAsObject["wps:ExecuteResponse"]["wps:ProcessOutputs"][0][

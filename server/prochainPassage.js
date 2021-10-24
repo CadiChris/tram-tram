@@ -6,8 +6,12 @@ async function prochainPassage(sockets, prochainPassageAdapter) {
     return;
   }
 
-  const prochain = await prochainPassageAdapter.getProchainPassage();
   log(`[Prochain Passage] Envoi des infos à ${sockets.size} clients`);
+
+  const prochain = await prochainPassageAdapter.getProchainPassage({
+    id_arret: "T_BQF_A",
+    terminus_exclus: ["Gare De Blanquefort"],
+  });
   sockets.forEach((s) => s.send(JSON.stringify(prochain)));
 }
 
