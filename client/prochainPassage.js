@@ -25,8 +25,10 @@ function htmlPourUnHoraire(
     ➡️ ${moment_du_depart} min. <sup>(+${temps_de_marche} min.)</sup>
   </div>
   ⏳ ${diff_minutes} minutes (${diff_secondes} secondes) <br/>
-  ⌚️ ${tram.toLocaleTimeString("fr")}
-  <span class="terminus">${terminus}</span>
+  ⌚️ <span class="secondaire">
+    ${tram.toLocaleTimeString("fr")}
+    <span class="terminus">${terminus}</span>
+  </span>
 </div>`;
 }
 
