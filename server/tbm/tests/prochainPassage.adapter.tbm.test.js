@@ -15,7 +15,7 @@ describe("Adapter du prochain passage sur TBM", () => {
     );
   });
 
-  it("renvoie la date du prochain passage", async () => {
+  it("renvoie les horaires des prochains passages qui *partent* de Blanquefort", async () => {
     const httpMock = {
       get: jest.fn(async () => await xmlDuProchainPassage()),
     };
@@ -24,7 +24,11 @@ describe("Adapter du prochain passage sur TBM", () => {
       http: httpMock,
     });
 
-    expect(prochain).toEqual([{ horaire_theorique: "2021-10-23T20:57:19" }]);
+    expect(prochain).toEqual([
+        { horaire_theorique: "2021-10-23T21:05:25" },
+        { horaire_theorique: "2021-10-23T21:11:43" },
+        { horaire_theorique: "2021-10-23T21:24:28" },
+    ]);
   });
 });
 

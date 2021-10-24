@@ -6,3 +6,7 @@ div {
     font-family: Cabin, serif;
 }
 
+.un-depart {
+    margin: 1rem 0 .5rem .2rem;
+    border-left: 4px solid deeppink;
+}
