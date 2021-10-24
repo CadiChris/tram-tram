@@ -7,6 +7,7 @@ describe("Affichage du prochain passage", () => {
       { horaire_theorique: "2021-10-23T15:06:00", terminus: "Porte De B." },
     ],
     reference: new Date("2021-10-23T15:00:00"),
+    temps_de_marche: 10
   };
 
   it("affiche l'heure du prochain passage", () => {
@@ -27,6 +28,15 @@ describe("Affichage du prochain passage", () => {
 
     assertAffichage("02 minutes (151 secondes)", updateUi);
     assertAffichage("06 minutes (360 secondes)", updateUi);
+  });
+
+  it("affiche un conseil pour l'heure de mise en route", () => {
+    const updateUi = jest.fn();
+
+    afficherProchainPassage(arret_de_test, updateUi);
+
+    assertAffichage("(+10 min.)", updateUi);
+    assertAffichage("12 min.", updateUi);
   });
 });
 

@@ -13,7 +13,16 @@ div {
 
 .un-depart {
   margin: 0.6rem 0 0.5rem 0.2rem;
+  padding-left: 0.3rem;
   border-left: 4px solid deeppink;
+}
+
+.temps-de-marche {
+  display: flex;
+}
+
+.temps-de-marche sup {
+  font-size: 0.6rem;
 }
 
 .terminus {
