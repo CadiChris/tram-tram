@@ -1,16 +1,25 @@
 import { afficherProchainPassage } from "./prochainPassage.js";
 
-const websocket_url = location.origin.replace(/^http/, 'ws');
+const websocket_url = location.origin.replace(/^http/, "ws");
 const socket = new WebSocket(`${websocket_url}/web-socket`);
 
 socket.onmessage = (event) => {
   console.log("%s", event.data);
 
+  const json = JSON.parse(event.data);
+  const now = new Date();
+
   afficherProchainPassage(
-    { prochains: JSON.parse(event.data), reference: new Date() },
-    (html) => {
-      document.querySelector("#prochain-depart-de-blanquefort").innerHTML =
-        html;
-    }
+    { prochains: json.gare_de_blanquefort, reference: now },
+    setHtml("#prochain-depart-de-blanquefort")
   );
+
+  afficherProchainPassage(
+    { prochains: json.place_paul_doumer, reference: now },
+    setHtml("#prochain-depart-de-paul-doumer")
+  );
+};
+
+const setHtml = (selector) => (html) => {
+  document.querySelector(selector).innerHTML = html;
 };

@@ -1,7 +1,7 @@
 const { prochainPassage } = require("../prochainPassage");
 
 describe("Prochain passage", () => {
-  it("récupère les prochains passages à Gare de Blanquefort", async () => {
+  it("récupère les prochains passages à Gare de Blanquefort et Place Paul Doumer", async () => {
     const socket = { send: jest.fn() };
 
     const prochainPassageInMemory = {
@@ -12,11 +12,13 @@ describe("Prochain passage", () => {
 
     await prochainPassage(new Set([socket]), prochainPassageInMemory);
 
-    expect(
-        prochainPassageInMemory.getProchainPassage
-    ).toHaveBeenCalledWith({
+    expect(prochainPassageInMemory.getProchainPassage).toHaveBeenCalledWith({
       id_arret: "T_BQF_A",
       terminus_exclus: ["Gare De Blanquefort"],
+    });
+    expect(prochainPassageInMemory.getProchainPassage).toHaveBeenCalledWith({
+      id_arret: "T_DOUMER_A",
+      terminus_exclus: ["Parc Des Expositions - Nouveau Stade"],
     });
   });
 
@@ -32,7 +34,10 @@ describe("Prochain passage", () => {
     await prochainPassage(new Set([socket]), prochainPassageInMemory);
 
     expect(socket.send).toHaveBeenCalledWith(
-      '[{"horaire_theorique":"2021-10-23T20:57:19"}]'
+      JSON.stringify({
+        gare_de_blanquefort: [{ horaire_theorique: "2021-10-23T20:57:19" }],
+        place_paul_doumer: [{ horaire_theorique: "2021-10-23T20:57:19" }],
+      })
     );
   });
 
