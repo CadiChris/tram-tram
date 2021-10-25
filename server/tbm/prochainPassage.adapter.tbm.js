@@ -15,7 +15,7 @@ const prochainPassageAdapterTbm = {
       .map((e) => get_bmHORAIRE(e))
       .filter((h) => !terminus_exclus.includes(h["bm:TERMINUS"][0]))
       .map((h) => ({
-        horaire_theorique: h["bm:HOR_THEO"][0],
+        horaire: h["bm:HOR_ESTIME"][0],
         terminus: h["bm:TERMINUS"][0],
       }));
   },

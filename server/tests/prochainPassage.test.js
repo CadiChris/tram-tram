@@ -6,7 +6,7 @@ describe("Prochain passage", () => {
 
     const prochainPassageInMemory = {
       getProchainPassage: jest.fn(async () => [
-        { horaire_theorique: "2021-10-23T20:57:19" },
+        { horaire: "2021-10-23T20:57:19" },
       ]),
     };
 
@@ -27,7 +27,7 @@ describe("Prochain passage", () => {
 
     const prochainPassageInMemory = {
       getProchainPassage: async () => [
-        { horaire_theorique: "2021-10-23T20:57:19" },
+        { horaire: "2021-10-23T20:57:19" },
       ],
     };
 
@@ -35,8 +35,8 @@ describe("Prochain passage", () => {
 
     expect(socket.send).toHaveBeenCalledWith(
       JSON.stringify({
-        gare_de_blanquefort: [{ horaire_theorique: "2021-10-23T20:57:19" }],
-        place_paul_doumer: [{ horaire_theorique: "2021-10-23T20:57:19" }],
+        gare_de_blanquefort: [{ horaire: "2021-10-23T20:57:19" }],
+        place_paul_doumer: [{ horaire: "2021-10-23T20:57:19" }],
       })
     );
   });

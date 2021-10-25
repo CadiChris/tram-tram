@@ -10,10 +10,10 @@ export function afficherProchainPassage(
 }
 
 function htmlPourUnHoraire(
-  { horaire_theorique, terminus },
+  { horaire, terminus },
   { reference, temps_de_marche }
 ) {
-  const tram = new Date(horaire_theorique);
+  const tram = new Date(horaire);
 
   const diff_minutes = getDiffMinutes(reference, tram);
   const diff_secondes = getDiffSecondes(reference, tram);
@@ -32,12 +32,12 @@ function htmlPourUnHoraire(
 </div>`;
 }
 
-function getDiffMinutes(reference, horaire_theorique) {
-  return Math.floor(Math.abs(reference - horaire_theorique) / 1000 / 60)
+function getDiffMinutes(reference, horaire) {
+  return Math.floor(Math.abs(reference - horaire) / 1000 / 60)
     .toString()
     .padStart(2, "0");
 }
 
-function getDiffSecondes(reference, horaire_theorique) {
-  return Math.round(Math.abs(reference - horaire_theorique) / 1000);
+function getDiffSecondes(reference, horaire) {
+  return Math.round(Math.abs(reference - horaire) / 1000);
 }

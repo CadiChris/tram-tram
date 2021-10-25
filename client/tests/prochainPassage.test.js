@@ -3,8 +3,8 @@ const { afficherProchainPassage } = require("../prochainPassage");
 describe("Affichage du prochain passage", () => {
   const arret_de_test = {
     prochains: [
-      { horaire_theorique: "2021-10-23T15:02:31", terminus: "Gare De Begles" },
-      { horaire_theorique: "2021-10-23T15:06:00", terminus: "Porte De B." },
+      { horaire: "2021-10-23T15:02:31", terminus: "Gare De Begles" },
+      { horaire: "2021-10-23T15:06:00", terminus: "Porte De B." },
     ],
     reference: new Date("2021-10-23T15:00:00"),
     temps_de_marche: 1
