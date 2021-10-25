@@ -10,6 +10,10 @@ https://opendata.bordeaux-metropole.fr/explore/
 
 > `GET https://data.bordeaux-metropole.fr/wfs?key=258BILMNYZ&REQUEST=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=bm:SV_ARRET_P`
 
+#### Prochains passage à un arrêt
+
+- https://opendata.bordeaux-metropole.fr/explore/dataset/sv_horai_a/information/
+
 #### Arrêt Gare de Blanquefort
 
 ```xml
