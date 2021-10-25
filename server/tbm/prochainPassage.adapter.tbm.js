@@ -15,7 +15,7 @@ const prochainPassageAdapterTbm = {
       .map((e) => get_bmHORAIRE(e))
       .filter((h) => !terminus_exclus.includes(h["bm:TERMINUS"][0]))
       .map((h) => ({
-        horaire: h["bm:HOR_ESTIME"][0],
+        horaire: parPriorite(h["bm:HOR_ESTIME"][0], h["bm:HOR_APP"][0]),
         terminus: h["bm:TERMINUS"][0],
       }));
   },
@@ -35,6 +35,11 @@ function get_bmHORAIRE(wpsOutputObject) {
   return wpsOutputObject["wps:Data"][0]["wps:ComplexData"][0][
     "gml:featureMember"
   ][0]["bm:HORAIRE"][0];
+}
+
+function parPriorite(a, b) {
+  if (a !== null && a !== undefined && a !== "") return a;
+  else return b;
 }
 
 module.exports = {
