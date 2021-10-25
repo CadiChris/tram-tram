@@ -5,6 +5,7 @@ describe("Affichage du prochain passage", () => {
     prochains: [
       { horaire: "2021-10-23T15:02:31", terminus: "Gare De Begles" },
       { horaire: "2021-10-23T15:06:00", terminus: "Porte De B." },
+      { horaire: "2021-10-23T14:59:40", terminus: "Gare De Begles" },
     ],
     reference: new Date("2021-10-23T15:00:00"),
     temps_de_marche: 1,
@@ -26,8 +27,8 @@ describe("Affichage du prochain passage", () => {
 
     afficherProchainPassage(arret_de_test, updateUi);
 
-    assertAffichage("02 min. 31 s.", updateUi);
-    assertAffichage("06 min. 00 s.", updateUi);
+    assertAffichage("⏳ 02 min. 31 s.", updateUi);
+    assertAffichage("⏳ 06 min. 00 s.", updateUi);
   });
 
   it("affiche un conseil pour l'heure de mise en route", () => {
@@ -36,7 +37,15 @@ describe("Affichage du prochain passage", () => {
     afficherProchainPassage(arret_de_test, updateUi);
 
     assertAffichage("(+1 min.)", updateUi);
-    assertAffichage("01 min. 31 s.", updateUi);
+    assertAffichage("➡️ 01 min. 31 s.", updateUi);
+  });
+
+  it("affiche un icone spécial pour les départs manqués", () => {
+    const updateUi = jest.fn();
+
+    afficherProchainPassage(arret_de_test, updateUi);
+
+    assertAffichage("❌ -01 min. 20 s.", updateUi);
   });
 });
 

@@ -17,11 +17,12 @@ function htmlPourUnHoraire(
 
   const diff_avec_tram = getDiff(tram, reference);
   const moment_du_depart = getDiff(tram - enMs(temps_de_marche), reference);
+  const icone = getIconeDuDepart(moment_du_depart);
 
   return `
 <div class="un-depart">
   <div class="temps-de-marche">
-    ➡️ ${moment_du_depart} <sup>(+${temps_de_marche} min.)</sup>
+    ${icone} ${moment_du_depart} <sup>(+${temps_de_marche} min.)</sup>
   </div>
   ⏳ ${diff_avec_tram} <br/>
   ⌚️ <span class="secondaire">
@@ -49,4 +50,8 @@ function deuxChiffres(valeur) {
 
 function enMs(temps_minutes) {
   return temps_minutes * 60000;
+}
+
+function getIconeDuDepart(moment_du_depart) {
+  return moment_du_depart.indexOf("-") !== -1 ? "❌" : "➡️";
 }
