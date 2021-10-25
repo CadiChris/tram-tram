@@ -7,7 +7,7 @@ describe("Affichage du prochain passage", () => {
       { horaire_theorique: "2021-10-23T15:06:00", terminus: "Porte De B." },
     ],
     reference: new Date("2021-10-23T15:00:00"),
-    temps_de_marche: 10
+    temps_de_marche: 1
   };
 
   it("affiche l'heure du prochain passage", () => {
@@ -35,8 +35,8 @@ describe("Affichage du prochain passage", () => {
 
     afficherProchainPassage(arret_de_test, updateUi);
 
-    assertAffichage("(+10 min.)", updateUi);
-    assertAffichage("12 min.", updateUi);
+    assertAffichage("(+1 min.)", updateUi);
+    assertAffichage("1 min.", updateUi);
   });
 });
 

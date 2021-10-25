@@ -17,7 +17,7 @@ function htmlPourUnHoraire(
 
   const diff_minutes = getDiffMinutes(reference, tram);
   const diff_secondes = getDiffSecondes(reference, tram);
-  const moment_du_depart = Number(diff_minutes) + temps_de_marche;
+  const moment_du_depart = Number(diff_minutes) - temps_de_marche;
 
   return `
 <div class="un-depart">
