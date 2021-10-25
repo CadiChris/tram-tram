@@ -1,10 +1,15 @@
 import { afficherProchainPassage } from "./prochainPassage.js";
+import { setHtml } from "./setHtml.js";
+import { countdown } from "./countdown.js";
 
 const websocket_url = location.origin.replace(/^http/, "ws");
 const socket = new WebSocket(`${websocket_url}/web-socket`);
 
+countdown.start();
+
 socket.onmessage = (event) => {
   console.log("%s", event.data);
+  countdown.start();
 
   const json = JSON.parse(event.data);
   const now = new Date();
@@ -20,6 +25,3 @@ socket.onmessage = (event) => {
   );
 };
 
-const setHtml = (selector) => (html) => {
-  document.querySelector(selector).innerHTML = html;
-};

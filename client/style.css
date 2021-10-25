@@ -32,3 +32,7 @@ div {
 .secondaire {
   color: lightslategray;
 }
+
+#countdown {
+  font-size: 1rem;
+}
