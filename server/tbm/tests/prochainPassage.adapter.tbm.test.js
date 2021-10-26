@@ -9,7 +9,7 @@ describe("Adapter du prochain passage sur TBM", () => {
     };
 
     await prochainPassageAdapterTbm.getProchainPassage(
-      { id_arret: "T_BQF_A", terminus_exclus: [] },
+      { ids_arrets: ["T_BQF_A"], terminus_exclus: [] },
       { http: httpMock }
     );
 
@@ -24,7 +24,7 @@ describe("Adapter du prochain passage sur TBM", () => {
     };
 
     const prochain = await prochainPassageAdapterTbm.getProchainPassage(
-      { id_arret: "", terminus_exclus: ["Gare De Blanquefort"] },
+      { ids_arrets: ["T_BQF_A"], terminus_exclus: ["Gare De Blanquefort"] },
       { http: httpMock }
     );
 
@@ -41,11 +41,11 @@ describe("Adapter du prochain passage sur TBM", () => {
     };
 
     const prochain = await prochainPassageAdapterTbm.getProchainPassage(
-        { id_arret: "", terminus_exclus: ["Gare De Blanquefort"] },
-        { http: httpMock }
+      { ids_arrets: [], terminus_exclus: ["Gare De Blanquefort"] },
+      { http: httpMock }
     );
 
-    expect(prochain).toEqual([])
+    expect(prochain).toEqual([]);
   });
 });
 

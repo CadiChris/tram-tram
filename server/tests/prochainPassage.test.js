@@ -13,11 +13,11 @@ describe("Prochain passage", () => {
     await prochainPassage(new Set([socket]), prochainPassageInMemory);
 
     expect(prochainPassageInMemory.getProchainPassage).toHaveBeenCalledWith({
-      id_arret: "T_BQF_A",
+      ids_arrets: ["T_BQF_A", "T_BQF_R"],
       terminus_exclus: ["Gare De Blanquefort"],
     });
     expect(prochainPassageInMemory.getProchainPassage).toHaveBeenCalledWith({
-      id_arret: "T_DOUMER_A",
+      ids_arrets: ["T_DOUMER_A"],
       terminus_exclus: ["Parc Des Expositions - Nouveau Stade"],
     });
   });
@@ -26,9 +26,7 @@ describe("Prochain passage", () => {
     const socket = { send: jest.fn() };
 
     const prochainPassageInMemory = {
-      getProchainPassage: async () => [
-        { horaire: "2021-10-23T20:57:19" },
-      ],
+      getProchainPassage: async () => [{ horaire: "2021-10-23T20:57:19" }],
     };
 
     await prochainPassage(new Set([socket]), prochainPassageInMemory);

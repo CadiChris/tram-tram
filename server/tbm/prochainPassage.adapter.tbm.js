@@ -3,15 +3,15 @@ const { httpClient } = require("../http/httpClient");
 
 const prochainPassageAdapterTbm = {
   async getProchainPassage(
-    { id_arret, terminus_exclus },
+    { ids_arrets, terminus_exclus },
     { http } = { http: httpClient }
   ) {
-    const xml = await http.get(urlProchainPassagePour(id_arret));
+    const fetchEnParallele = Promise.all(
+      ids_arrets.map((id_arret) => getEntrees(id_arret, http))
+    );
 
-    const xmlAsObject = await xml2js.parseStringPromise(xml);
-    const entrees = get_wpsOutputs(xmlAsObject);
-
-    return entrees
+    return (await fetchEnParallele)
+      .flat()
       .map((e) => get_bmHORAIRE(e))
       .filter((h) => !terminus_exclus.includes(h["bm:TERMINUS"][0]))
       .map((h) => ({
@@ -20,6 +20,12 @@ const prochainPassageAdapterTbm = {
       }));
   },
 };
+
+async function getEntrees(id_arret, http) {
+  const xml = await http.get(urlProchainPassagePour(id_arret));
+  const xmlAsObject = await xml2js.parseStringPromise(xml);
+  return get_wpsOutputs(xmlAsObject);
+}
 
 function urlProchainPassagePour(id_arret) {
   return `https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=${id_arret}`;

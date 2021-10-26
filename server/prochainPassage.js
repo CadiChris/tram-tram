@@ -24,14 +24,14 @@ function rienAFaire() {
 
 async function getGareDeBlanquefort(prochainPassageAdapter) {
   return await prochainPassageAdapter.getProchainPassage({
-    id_arret: "T_BQF_A",
+    ids_arrets: ["T_BQF_A", "T_BQF_R"],
     terminus_exclus: ["Gare De Blanquefort"],
   });
 }
 
 async function getPlacePaulDoumer(prochainPassageAdapter) {
   return await prochainPassageAdapter.getProchainPassage({
-    id_arret: "T_DOUMER_A",
+    ids_arrets: ["T_DOUMER_A"],
     terminus_exclus: ["Parc Des Expositions - Nouveau Stade"],
   });
 }
