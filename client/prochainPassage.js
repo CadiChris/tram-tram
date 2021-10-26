@@ -22,7 +22,7 @@ function htmlPourUnHoraire(
   return `
 <div class="un-depart">
   <div class="temps-de-marche">
-    ${icone} ${moment_du_depart} <sup>(+${temps_de_marche} min.)</sup>
+    ${icone} ${moment_du_depart} <sup>(${temps_de_marche} min.)</sup>
   </div>
   ⏳ ${diff_avec_tram} <br/>
   ⌚️ <span class="secondaire">

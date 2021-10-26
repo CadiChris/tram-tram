@@ -36,7 +36,7 @@ describe("Affichage du prochain passage", () => {
 
     afficherProchainPassage(arret_de_test, updateUi);
 
-    assertAffichage("(+1 min.)", updateUi);
+    assertAffichage("(1 min.)", updateUi);
     assertAffichage("➡️ 01 min. 31 s.", updateUi);
   });
 
