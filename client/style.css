@@ -6,6 +6,7 @@ h1 {
   font-family: "Bebas Neue", sans-serif;
   text-align: center;
   margin-bottom: 0;
+  margin-top: .3rem;
 }
 
 div {
@@ -38,4 +39,5 @@ progress {
   position: relative;
   width: 104vw;
   left: -4vw;
+  margin-bottom: .8rem;
 }
