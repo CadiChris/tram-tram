@@ -1,21 +1,29 @@
 const { promises: fs } = require("fs");
 const path = require("path");
 const { prochainPassageAdapterTbm } = require("../prochainPassage.adapter.tbm");
+const { env } = require("../../env");
 
 describe("Adapter du prochain passage sur TBM", () => {
   it("appelle l'API TBM pour l'arrêt en paramètre", async () => {
-    const httpMock = {
-      get: jest.fn(async () => await xmlGareDeBlanquefort()),
-    };
+    const _cle_api = env.CLE_API_TBM;
+    env.CLE_API_TBM = "CLE_API";
 
-    await prochainPassageAdapterTbm.getProchainPassage(
-      { ids_arrets: ["T_BQF_A"], terminus_exclus: [] },
-      { http: httpMock }
-    );
+    try {
+      const httpMock = {
+        get: jest.fn(async () => await xmlGareDeBlanquefort()),
+      };
 
-    expect(httpMock.get).toHaveBeenCalledWith(
-      "https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_A"
-    );
+      await prochainPassageAdapterTbm.getProchainPassage(
+        { ids_arrets: ["T_BQF_A"], terminus_exclus: [] },
+        { http: httpMock }
+      );
+
+      expect(httpMock.get).toHaveBeenCalledWith(
+        "https://data.bordeaux-metropole.fr/wps?key=CLE_API&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=T_BQF_A"
+      );
+    } finally {
+      env.CLE_API_TBM = _cle_api;
+    }
   });
 
   it("renvoie les horaires qui ne *vont pas* vers les terminus exclus", async () => {

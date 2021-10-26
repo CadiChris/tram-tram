@@ -1,5 +1,6 @@
 const xml2js = require("xml2js");
 const { httpClient } = require("../http/httpClient");
+const { env } = require("../env");
 
 const prochainPassageAdapterTbm = {
   async getProchainPassage(
@@ -28,7 +29,7 @@ async function getEntrees(id_arret, http) {
 }
 
 function urlProchainPassagePour(id_arret) {
-  return `https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=${id_arret}`;
+  return `https://data.bordeaux-metropole.fr/wps?key=${env.CLE_API_TBM}&service=WPS&version=1.0.0&request=Execute&Identifier=saeiv_arret_passages&DataInputs=ARRET_ID=${id_arret}`;
 }
 
 function get_wpsOutputs(xmlAsObject) {

@@ -1,5 +1,10 @@
 # TRAM-TRAM
 
+### Développement
+
+- Démarrer en local : `yarn local` qui va déléguer à `heroku local` pour les variables d'environnements
+  > https://devcenter.heroku.com/articles/heroku-local
+
 ### API Bordeaux Métropole
 
 https://opendata.bordeaux-metropole.fr/explore/
