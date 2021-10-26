@@ -26,9 +26,9 @@ function urlProchainPassagePour(id_arret) {
 }
 
 function get_wpsOutputs(xmlAsObject) {
-  return xmlAsObject["wps:ExecuteResponse"]["wps:ProcessOutputs"][0][
-    "wps:Output"
-  ];
+  const wpsProcessOutputs =
+    xmlAsObject["wps:ExecuteResponse"]["wps:ProcessOutputs"][0];
+  return wpsProcessOutputs["wps:Output"] || [];
 }
 
 function get_bmHORAIRE(wpsOutputObject) {

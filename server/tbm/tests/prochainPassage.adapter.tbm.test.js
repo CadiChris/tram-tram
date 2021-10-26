@@ -34,10 +34,27 @@ describe("Adapter du prochain passage sur TBM", () => {
       { horaire: "2021-10-23T21:24:28", terminus: "Gare De Begles" },
     ]);
   });
+
+  it("ne crashe pas s'il n'y a aucun passage prévu", async () => {
+    const httpMock = {
+      get: jest.fn(async () => await xmlAucunPassage()),
+    };
+
+    const prochain = await prochainPassageAdapterTbm.getProchainPassage(
+        { id_arret: "", terminus_exclus: ["Gare De Blanquefort"] },
+        { http: httpMock }
+    );
+
+    expect(prochain).toEqual([])
+  });
 });
 
 async function xmlGareDeBlanquefort() {
   return await xmlDeTest("prochain_passages_gare_de_blanquefort.xml");
+}
+
+async function xmlAucunPassage() {
+  return await xmlDeTest("prochains_passages_aucun_passage.xml");
 }
 
 async function xmlDeTest(fichier) {

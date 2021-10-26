@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Bordeaux Métropole WPS Server - version 3.0.14 - Conditions d'utilisation sur http://data.bordeaux-metropole.fr -->
+<wps:ExecuteResponse xmlns:wps="http://www.opengis.net/wps/1.0.0" xmlns:ows="http://www.opengis.net/ows/1.1"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     service="WPS" version="1.0.0" xml:lang="fr"
+                     xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsexecute_response.xsd"
+                     serviceInstance="https://data.bordeaux-metropole.fr/wps?key=258BILMNYZ&amp;service=WPS&amp;version=1.0.0&amp;request=getcapabilities">
+    <wps:Process wps:processVersion="2.0.0">
+        <ows:Identifier>saeiv_arret_passages</ows:Identifier>
+        <ows:Title>Passages sur un arret spécifique</ows:Title>
+        <ows:Abstract>Retourne tous les passages à venir sur un arret TBM</ows:Abstract>
+    </wps:Process>
+    <wps:Status creationTime="2021-10-26T23:06:12+02:00">
+        <wps:ProcessSucceeded>Traitement terminé</wps:ProcessSucceeded>
+    </wps:Status>
+    <wps:ProcessOutputs>
+    </wps:ProcessOutputs>
+</wps:ExecuteResponse>
